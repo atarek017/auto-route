@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter/material.dart' as _i5;
+import 'package:rout_tow/class/person_class.dart' as _i6;
 import 'package:rout_tow/screens/BookDetailsPage.dart' as _i1;
 import 'package:rout_tow/screens/BookListPage.dart' as _i2;
 import 'package:rout_tow/screens/HomePage.dart' as _i3;
@@ -27,9 +28,21 @@ abstract class $AppRouter extends _i4.RootStackRouter {
       );
     },
     BookListRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final queryParams = routeData.queryParams;
+      final args = routeData.argsAs<BookListRouteArgs>(
+          orElse: () => BookListRouteArgs(
+                id: pathParams.getString('id'),
+                showName: queryParams.optBool('showName'),
+              ));
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.BookListPage(),
+        child: _i2.BookListPage(
+          key: args.key,
+          id: args.id,
+          showName: args.showName,
+          person: args.person,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -57,16 +70,52 @@ class BookDetailsRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.BookListPage]
-class BookListRoute extends _i4.PageRouteInfo<void> {
-  const BookListRoute({List<_i4.PageRouteInfo>? children})
-      : super(
+class BookListRoute extends _i4.PageRouteInfo<BookListRouteArgs> {
+  BookListRoute({
+    _i5.Key? key,
+    required String id,
+    bool? showName,
+    _i6.Person? person,
+    List<_i4.PageRouteInfo>? children,
+  }) : super(
           BookListRoute.name,
+          args: BookListRouteArgs(
+            key: key,
+            id: id,
+            showName: showName,
+            person: person,
+          ),
+          rawPathParams: {'id': id},
+          rawQueryParams: {'showName': showName},
           initialChildren: children,
         );
 
   static const String name = 'BookListRoute';
 
-  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+  static const _i4.PageInfo<BookListRouteArgs> page =
+      _i4.PageInfo<BookListRouteArgs>(name);
+}
+
+class BookListRouteArgs {
+  const BookListRouteArgs({
+    this.key,
+    required this.id,
+    this.showName,
+    this.person,
+  });
+
+  final _i5.Key? key;
+
+  final String id;
+
+  final bool? showName;
+
+  final _i6.Person? person;
+
+  @override
+  String toString() {
+    return 'BookListRouteArgs{key: $key, id: $id, showName: $showName, person: $person}';
+  }
 }
 
 /// generated route for

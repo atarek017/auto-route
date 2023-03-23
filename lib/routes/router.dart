@@ -9,9 +9,10 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(page: HomeRoute.page, path: '/'),
-    AutoRoute(
+    CustomRoute(
       page: BookListRoute.page,
       path: '/:id',
+      transitionsBuilder: TransitionsBuilders.slideTop,
     ),
     AutoRoute(
       page: BookDetailsRoute.page,

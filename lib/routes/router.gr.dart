@@ -10,10 +10,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter/material.dart' as _i5;
-import 'package:rout_tow/class/person_class.dart' as _i6;
-import 'package:rout_tow/screens/BookDetailsPage.dart' as _i1;
-import 'package:rout_tow/screens/BookListPage.dart' as _i2;
-import 'package:rout_tow/screens/HomePage.dart' as _i3;
+import 'package:rout_tow/screens/home_page.dart' as _i1;
+import 'package:rout_tow/screens/profile_page.dart' as _i2;
+import 'package:rout_tow/screens/tab_page.dart' as _i3;
 
 abstract class $AppRouter extends _i4.RootStackRouter {
   $AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
@@ -21,113 +20,65 @@ abstract class $AppRouter extends _i4.RootStackRouter {
 
   @override
   final Map<String, _i4.PageFactory> pagesMap = {
-    BookDetailsRoute.name: (routeData) {
+    HomeRouter.name: (routeData) {
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.BookDetailsPage(),
+        child: const _i1.HomePage(),
       );
     },
-    BookListRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<BookListRouteArgs>(
-          orElse: () => BookListRouteArgs(
-                id: pathParams.getString('id'),
-                showName: queryParams.optBool('showName'),
-              ));
+    ProfileRouter.name: (routeData) {
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i2.BookListPage(
-          key: args.key,
-          id: args.id,
-          showName: args.showName,
-          person: args.person,
-        ),
+        child: const _i2.ProfilePage(),
       );
     },
-    HomeRoute.name: (routeData) {
+    TabRoute.name: (routeData) {
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.HomePage(),
+        child: const _i3.TabPage(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.BookDetailsPage]
-class BookDetailsRoute extends _i4.PageRouteInfo<void> {
-  const BookDetailsRoute({List<_i4.PageRouteInfo>? children})
+/// [_i1.HomePage]
+class HomeRouter extends _i4.PageRouteInfo<void> {
+  const HomeRouter({List<_i4.PageRouteInfo>? children})
       : super(
-          BookDetailsRoute.name,
+          HomeRouter.name,
           initialChildren: children,
         );
 
-  static const String name = 'BookDetailsRoute';
+  static const String name = 'HomeRouter';
 
   static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.BookListPage]
-class BookListRoute extends _i4.PageRouteInfo<BookListRouteArgs> {
-  BookListRoute({
-    _i5.Key? key,
-    required String id,
-    bool? showName,
-    _i6.Person? person,
-    List<_i4.PageRouteInfo>? children,
-  }) : super(
-          BookListRoute.name,
-          args: BookListRouteArgs(
-            key: key,
-            id: id,
-            showName: showName,
-            person: person,
-          ),
-          rawPathParams: {'id': id},
-          rawQueryParams: {'showName': showName},
+/// [_i2.ProfilePage]
+class ProfileRouter extends _i4.PageRouteInfo<void> {
+  const ProfileRouter({List<_i4.PageRouteInfo>? children})
+      : super(
+          ProfileRouter.name,
           initialChildren: children,
         );
 
-  static const String name = 'BookListRoute';
+  static const String name = 'ProfileRouter';
 
-  static const _i4.PageInfo<BookListRouteArgs> page =
-      _i4.PageInfo<BookListRouteArgs>(name);
-}
-
-class BookListRouteArgs {
-  const BookListRouteArgs({
-    this.key,
-    required this.id,
-    this.showName,
-    this.person,
-  });
-
-  final _i5.Key? key;
-
-  final String id;
-
-  final bool? showName;
-
-  final _i6.Person? person;
-
-  @override
-  String toString() {
-    return 'BookListRouteArgs{key: $key, id: $id, showName: $showName, person: $person}';
-  }
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.HomePage]
-class HomeRoute extends _i4.PageRouteInfo<void> {
-  const HomeRoute({List<_i4.PageRouteInfo>? children})
+/// [_i3.TabPage]
+class TabRoute extends _i4.PageRouteInfo<void> {
+  const TabRoute({List<_i4.PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          TabRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'TabRoute';
 
   static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }

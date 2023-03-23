@@ -1,25 +1,29 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:rout_tow/routes/router.gr.dart';
 
+
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class AppRouter extends $AppRouter {
   @override
   RouteType get defaultRouteType => const RouteType.material();
-
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: HomeRoute.page, path: '/'),
-    CustomRoute(
-      page: BookListRoute.page,
-      path: '/:id',
-      transitionsBuilder: TransitionsBuilders.slideTop,
-    ),
     AutoRoute(
-      page: BookDetailsRoute.page,
-      path: '/book-details',
-    ),
+      path: "/",
+      page: TabRoute.page,
+      children: [
+        // First bottomnavigation bar tab
+        AutoRoute(
+          path: 'home',
+          page: HomeRouter.page,
+        ),
 
-    // if the path matches to home, it will redirect to home screen
-    RedirectRoute(path: '/home/*', redirectTo: '/'),
+        // Second bottomnavigation bar tab
+        AutoRoute(
+          path: "profile",
+          page: ProfileRouter.page,
+        ),
+      ],
+    ),
   ];
 }

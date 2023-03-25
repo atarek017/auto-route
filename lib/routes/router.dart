@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:rout_tow/routes/router.gr.dart';
 
-
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class AppRouter extends $AppRouter {
   @override
@@ -9,21 +8,38 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(
-      path: "/",
-      page: TabRoute.page,
+      page: MainTabRoute.page,
+      path: '/',
       children: [
-        // First bottomnavigation bar tab
         AutoRoute(
+          page: HomeTabRoute.page,
           path: 'home',
-          page: HomeRouter.page,
+          children: [
+            AutoRoute(path: '', page: HomeRouter.page),
+            AutoRoute(path: 'home-details', page: HomeDetailsRoute.page),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
         ),
-
-        // Second bottomnavigation bar tab
         AutoRoute(
-          path: "profile",
-          page: ProfileRouter.page,
+          page: ProfileTabRoute.page,
+          path: 'profile',
+          children: [
+            AutoRoute(path: '', page: ProfileRouter.page),
+            AutoRoute(path: '', page: ProfileDetailsRoute.page),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
         ),
       ],
     ),
   ];
+}
+
+@RoutePage()
+class HomeTabPage extends AutoRouter {
+  const HomeTabPage({super.key});
+}
+
+@RoutePage()
+class ProfileTabPage extends AutoRouter {
+  const ProfileTabPage({super.key});
 }

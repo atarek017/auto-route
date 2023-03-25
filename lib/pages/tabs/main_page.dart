@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +5,7 @@ import '../../routes/router.gr.dart';
 
 @RoutePage()
 class MainTabPage extends StatelessWidget {
-  const MainTabPage({super.key});
+  const MainTabPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +17,9 @@ class MainTabPage extends StatelessWidget {
               : const Text("Profile Page"),
         );
       },
-
       routes: const [
-        HomeRouter(),
-        ProfileRouter(),
+        HomeTabRoute(),
+        ProfileTabRoute(),
       ],
       transitionBuilder: (context, child, animation) {
         return ScaleTransition(
@@ -29,11 +27,10 @@ class MainTabPage extends StatelessWidget {
           child: child,
         );
       },
-
       bottomNavigationBuilder: (context, tabsRouter) {
         return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
+          currentIndex: tabsRouter.activeIndex,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
